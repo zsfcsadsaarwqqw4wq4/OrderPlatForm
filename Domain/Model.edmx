@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Business_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessUserInfoID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BusinessUserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EnterpriseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EnterpriseTaxNumber" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Head" Type="nvarchar" MaxLength="500" />
+          <Property Name="WeChatNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CollectionNum" Type="int" />
+          <Property Name="Shape" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuyerOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="500" />
+          <Property Name="Images" Type="nvarchar" MaxLength="500" />
+          <Property Name="order_steps" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Platform_order_status" Type="int" />
+          <Property Name="PlatformMessage" Type="nvarchar" MaxLength="500" />
+          <Property Name="Business_order_status" Type="int" />
+          <Property Name="BusinessMessage" Type="nvarchar" MaxLength="500" />
+          <Property Name="TasksID" Type="int" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="OrderType" Type="int" />
+          <Property Name="Commission" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="BuyerUser_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerUserInfoID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuyerUserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Head" Type="nvarchar" MaxLength="500" />
+          <Property Name="WechatNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Get" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Shape" Type="int" Nullable="false" />
+          <Property Name="EnterpriseName" Type="nvarchar" MaxLength="250" />
+          <Property Name="EnterpriseTaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="CollectionNum" Type="int" />
+        </EntityType>
+        <EntityType Name="ClassiFication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordTime" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="PID" Type="int" />
+          <Property Name="Shape" Type="int" />
+        </EntityType>
+        <EntityType Name="DataDictionary">
+          <Key>
+            <PropertyRef Name="DictionaryID" />
+          </Key>
+          <Property Name="DictionaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FDictionaryID" Type="int" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="100" />
+          <Property Name="Color" Type="varchar" MaxLength="100" />
+          <Property Name="Custom" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="int1" Type="int" />
+          <Property Name="int2" Type="int" />
+          <Property Name="int3" Type="int" />
+          <Property Name="str4" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="FDataDictionary">
+          <Key>
+            <PropertyRef Name="FDictionaryID" />
+          </Key>
+          <Property Name="FDictionaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Argument" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MoneyManager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="MoneyType" Type="int" />
+          <Property Name="Mode" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoneyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MoneyTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperationMoney">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="OrderPower">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CanReceiveOrderSum" Type="int" Nullable="false" />
+          <Property Name="OrdersReceiveNumber" Type="int" Nullable="false" />
+          <Property Name="OrdersNotReceivedNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nation" Type="int" />
+          <Property Name="Url_Asin" Type="int" />
+          <Property Name="Url_Asin_Value" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProductDescribe" Type="nvarchar" MaxLength="500" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductImg" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PriceBefore" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="SalesVolume" Type="int" />
+          <Property Name="ProductNumber" Type="int" />
+          <Property Name="Commission" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OrderType" Type="int" />
+          <Property Name="cmtType" Type="int" />
+          <Property Name="cmtDay" Type="int" />
+          <Property Name="Expired" Type="int" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="AddTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="OperatingMoneyID" Type="int" />
+          <Property Name="Coupon" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="int" />
+          <Property Name="GoodComment" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Collections" Type="int" />
+          <Property Name="CmtNum" Type="int" />
+          <Property Name="ProductClassID" Type="int" />
+          <Property Name="Shape" Type="int" />
+          <Property Name="BusinessID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
+        <EntityType Name="ReceiveOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pid" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Shape" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="BuyerUserID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Platform_order_status" Type="int" />
+          <Property Name="PlatformMessage" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="User_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProuctID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="isCollected" Type="bit" />
+          <Property Name="isGood" Type="bit" />
+          <Property Name="IsReceiveOrder" Type="bit" />
+        </EntityType>
+        <Association Name="FK__DataDicti__FDict__25869641">
+          <End Role="FDataDictionary" Type="Self.FDataDictionary" Multiplicity="1" />
+          <End Role="DataDictionary" Type="Self.DataDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FDataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Principal>
+            <Dependent Role="DataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DataDicti__FDict__267ABA7A">
+          <End Role="FDataDictionary" Type="Self.FDataDictionary" Multiplicity="1" />
+          <End Role="DataDictionary" Type="Self.DataDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FDataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Principal>
+            <Dependent Role="DataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Business_Product_BusinessUserInfo">
+          <End Role="BusinessUserInfo" Type="Self.BusinessUserInfo" Multiplicity="1" />
+          <End Role="Business_Product" Type="Self.Business_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Product">
+              <PropertyRef Name="BusinessUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Business_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Business_Product" Type="Self.Business_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyerUser_Product_BuyerUserInfo">
+          <End Role="BuyerUserInfo" Type="Self.BuyerUserInfo" Multiplicity="1" />
+          <End Role="BuyerUser_Product" Type="Self.BuyerUser_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyerUser_Product">
+              <PropertyRef Name="BuyerUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyerUser_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="BuyerUser_Product" Type="Self.BuyerUser_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyerUser_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ClassiFication">
+          <End Role="ClassiFication" Type="Self.ClassiFication" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassiFication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductComment_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductComment" Type="Self.ProductComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductComment">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_BuyerUserInfo">
+          <End Role="BuyerUserInfo" Type="Self.BuyerUserInfo" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="BuyerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Product_BuyerUserInfo">
+          <End Role="BuyerUserInfo" Type="Self.BuyerUserInfo" Multiplicity="1" />
+          <End Role="User_Product" Type="Self.User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Product">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="User_Product" Type="Self.User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Product">
+              <PropertyRef Name="ProuctID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopModelStoreContainer">
+          <EntitySet Name="Business_Product" EntityType="Self.Business_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessUserInfo" EntityType="Self.BusinessUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyerOrder" EntityType="Self.BuyerOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyerUser_Product" EntityType="Self.BuyerUser_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyerUserInfo" EntityType="Self.BuyerUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassiFication" EntityType="Self.ClassiFication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataDictionary" EntityType="Self.DataDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FDataDictionary" EntityType="Self.FDataDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoneyManager" EntityType="Self.MoneyManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoneyType" EntityType="Self.MoneyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationMoney" EntityType="Self.OperationMoney" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderPower" EntityType="Self.OrderPower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductComment" EntityType="Self.ProductComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiveOrder" EntityType="Self.ReceiveOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Product" EntityType="Self.User_Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DataDicti__FDict__25869641" Association="Self.FK__DataDicti__FDict__25869641">
+            <End Role="FDataDictionary" EntitySet="FDataDictionary" />
+            <End Role="DataDictionary" EntitySet="DataDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DataDicti__FDict__267ABA7A" Association="Self.FK__DataDicti__FDict__267ABA7A">
+            <End Role="FDataDictionary" EntitySet="FDataDictionary" />
+            <End Role="DataDictionary" EntitySet="DataDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Business_Product_BusinessUserInfo" Association="Self.FK_Business_Product_BusinessUserInfo">
+            <End Role="BusinessUserInfo" EntitySet="BusinessUserInfo" />
+            <End Role="Business_Product" EntitySet="Business_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Business_Product_Product" Association="Self.FK_Business_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Business_Product" EntitySet="Business_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyerUser_Product_BuyerUserInfo" Association="Self.FK_BuyerUser_Product_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="BuyerUser_Product" EntitySet="BuyerUser_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyerUser_Product_Product" Association="Self.FK_BuyerUser_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BuyerUser_Product" EntitySet="BuyerUser_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ClassiFication" Association="Self.FK_Product_ClassiFication">
+            <End Role="ClassiFication" EntitySet="ClassiFication" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductComment_Product" Association="Self.FK_ProductComment_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductComment" EntitySet="ProductComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_BuyerUserInfo" Association="Self.FK_Task_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Product" Association="Self.FK_Task_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Product_BuyerUserInfo" Association="Self.FK_User_Product_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="User_Product" EntitySet="User_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Product_Product" Association="Self.FK_User_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="User_Product" EntitySet="User_Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrderPower" EntityType="ShopModel.OrderPower" />
+          <EntitySet Name="DataDictionary" EntityType="ShopModel.DataDictionary" />
+          <EntitySet Name="FDataDictionary" EntityType="ShopModel.FDataDictionary" />
+          <AssociationSet Name="FK__DataDicti__FDict__25869641" Association="ShopModel.FK__DataDicti__FDict__25869641">
+            <End Role="FDataDictionary" EntitySet="FDataDictionary" />
+            <End Role="DataDictionary" EntitySet="DataDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DataDicti__FDict__267ABA7A" Association="ShopModel.FK__DataDicti__FDict__267ABA7A">
+            <End Role="FDataDictionary" EntitySet="FDataDictionary" />
+            <End Role="DataDictionary" EntitySet="DataDictionary" />
+          </AssociationSet>
+          <EntitySet Name="MoneyType" EntityType="ShopModel.MoneyType" />
+          <EntitySet Name="sysdiagrams" EntityType="ShopModel.sysdiagrams" />
+          <EntitySet Name="ClassiFication" EntityType="ShopModel.ClassiFication" />
+          <EntitySet Name="OperationMoney" EntityType="ShopModel.OperationMoney" />
+          <EntitySet Name="BuyerUser_Product" EntityType="ShopModel.BuyerUser_Product" />
+          <EntitySet Name="Business_Product" EntityType="ShopModel.Business_Product" />
+          <EntitySet Name="BusinessUserInfo" EntityType="ShopModel.BusinessUserInfo" />
+          <AssociationSet Name="FK_Business_Product_BusinessUserInfo" Association="ShopModel.FK_Business_Product_BusinessUserInfo">
+            <End Role="BusinessUserInfo" EntitySet="BusinessUserInfo" />
+            <End Role="Business_Product" EntitySet="Business_Product" />
+          </AssociationSet>
+          <EntitySet Name="ProductComment" EntityType="ShopModel.ProductComment" />
+          <EntitySet Name="BuyerUserInfo" EntityType="ShopModel.BuyerUserInfo" />
+          <AssociationSet Name="FK_BuyerUser_Product_BuyerUserInfo" Association="ShopModel.FK_BuyerUser_Product_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="BuyerUser_Product" EntitySet="BuyerUser_Product" />
+          </AssociationSet>
+          <EntitySet Name="User_Product" EntityType="ShopModel.User_Product" />
+          <AssociationSet Name="FK_User_Product_BuyerUserInfo" Association="ShopModel.FK_User_Product_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="User_Product" EntitySet="User_Product" />
+          </AssociationSet>
+          <EntitySet Name="ReceiveOrder" EntityType="ShopModel.ReceiveOrder" />
+          <EntitySet Name="Tasks" EntityType="ShopModel.Tasks" />
+          <AssociationSet Name="FK_Task_BuyerUserInfo" Association="ShopModel.FK_Task_BuyerUserInfo">
+            <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <EntitySet Name="Product" EntityType="ShopModel.Product" />
+          <AssociationSet Name="FK_Business_Product_Product" Association="ShopModel.FK_Business_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Business_Product" EntitySet="Business_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuyerUser_Product_Product" Association="ShopModel.FK_BuyerUser_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BuyerUser_Product" EntitySet="BuyerUser_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ClassiFication" Association="ShopModel.FK_Product_ClassiFication">
+            <End Role="ClassiFication" EntitySet="ClassiFication" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductComment_Product" Association="ShopModel.FK_ProductComment_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductComment" EntitySet="ProductComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Product" Association="ShopModel.FK_Task_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Product_Product" Association="ShopModel.FK_User_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="User_Product" EntitySet="User_Product" />
+          </AssociationSet>
+          <EntitySet Name="BuyerOrder" EntityType="ShopModel.BuyerOrder" />
+          <EntitySet Name="MoneyManager" EntityType="ShopModel.MoneyManager" />
+          </EntityContainer>
+        <EntityType Name="OrderPower">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CanReceiveOrderSum" Type="Int32" Nullable="false" />
+          <Property Name="OrdersReceiveNumber" Type="Int32" Nullable="false" />
+          <Property Name="OrdersNotReceivedNumber" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataDictionary">
+          <Key>
+            <PropertyRef Name="DictionaryID" />
+          </Key>
+          <Property Name="DictionaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FDictionaryID" Type="Int32" Nullable="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Custom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="int1" Type="Int32" />
+          <Property Name="int2" Type="Int32" />
+          <Property Name="int3" Type="Int32" />
+          <Property Name="str4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FDataDictionary" Relationship="ShopModel.FK__DataDicti__FDict__25869641" FromRole="DataDictionary" ToRole="FDataDictionary" />
+          <NavigationProperty Name="FDataDictionary1" Relationship="ShopModel.FK__DataDicti__FDict__267ABA7A" FromRole="DataDictionary" ToRole="FDataDictionary" />
+        </EntityType>
+        <EntityType Name="FDataDictionary">
+          <Key>
+            <PropertyRef Name="FDictionaryID" />
+          </Key>
+          <Property Name="FDictionaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Argument" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DataDictionary" Relationship="ShopModel.FK__DataDicti__FDict__25869641" FromRole="FDataDictionary" ToRole="DataDictionary" />
+          <NavigationProperty Name="DataDictionary1" Relationship="ShopModel.FK__DataDicti__FDict__267ABA7A" FromRole="FDataDictionary" ToRole="DataDictionary" />
+        </EntityType>
+        <Association Name="FK__DataDicti__FDict__25869641">
+          <End Type="ShopModel.FDataDictionary" Role="FDataDictionary" Multiplicity="1" />
+          <End Type="ShopModel.DataDictionary" Role="DataDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FDataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Principal>
+            <Dependent Role="DataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DataDicti__FDict__267ABA7A">
+          <End Type="ShopModel.FDataDictionary" Role="FDataDictionary" Multiplicity="1" />
+          <End Type="ShopModel.DataDictionary" Role="DataDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FDataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Principal>
+            <Dependent Role="DataDictionary">
+              <PropertyRef Name="FDictionaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MoneyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MoneyTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ClassiFication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecordTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="Shape" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_Product_ClassiFication" FromRole="ClassiFication" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OperationMoney">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="BuyerUser_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerUserInfoID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BuyerUserInfo" Relationship="ShopModel.FK_BuyerUser_Product_BuyerUserInfo" FromRole="BuyerUser_Product" ToRole="BuyerUserInfo" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_BuyerUser_Product_Product" FromRole="BuyerUser_Product" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Business_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessUserInfoID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BusinessUserInfo" Relationship="ShopModel.FK_Business_Product_BusinessUserInfo" FromRole="Business_Product" ToRole="BusinessUserInfo" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_Business_Product_Product" FromRole="Business_Product" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="BusinessUserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EnterpriseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnterpriseTaxNumber" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Head" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="WeChatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CollectionNum" Type="Int32" />
+          <Property Name="Shape" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Business_Product" Relationship="ShopModel.FK_Business_Product_BusinessUserInfo" FromRole="BusinessUserInfo" ToRole="Business_Product" />
+        </EntityType>
+        <Association Name="FK_Business_Product_BusinessUserInfo">
+          <End Type="ShopModel.BusinessUserInfo" Role="BusinessUserInfo" Multiplicity="1" />
+          <End Type="ShopModel.Business_Product" Role="Business_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Product">
+              <PropertyRef Name="BusinessUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_ProductComment_Product" FromRole="ProductComment" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="BuyerUserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Head" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="WechatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Get" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Shape" Type="Int32" Nullable="false" />
+          <Property Name="EnterpriseName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EnterpriseTaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="CollectionNum" Type="Int32" />
+          <NavigationProperty Name="BuyerUser_Product" Relationship="ShopModel.FK_BuyerUser_Product_BuyerUserInfo" FromRole="BuyerUserInfo" ToRole="BuyerUser_Product" />
+          <NavigationProperty Name="User_Product" Relationship="ShopModel.FK_User_Product_BuyerUserInfo" FromRole="BuyerUserInfo" ToRole="User_Product" />
+          <NavigationProperty Name="Tasks" Relationship="ShopModel.FK_Task_BuyerUserInfo" FromRole="BuyerUserInfo" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK_BuyerUser_Product_BuyerUserInfo">
+          <End Type="ShopModel.BuyerUserInfo" Role="BuyerUserInfo" Multiplicity="1" />
+          <End Type="ShopModel.BuyerUser_Product" Role="BuyerUser_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyerUser_Product">
+              <PropertyRef Name="BuyerUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User_Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProuctID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="isCollected" Type="Boolean" />
+          <Property Name="isGood" Type="Boolean" />
+          <Property Name="IsReceiveOrder" Type="Boolean" />
+          <NavigationProperty Name="BuyerUserInfo" Relationship="ShopModel.FK_User_Product_BuyerUserInfo" FromRole="User_Product" ToRole="BuyerUserInfo" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_User_Product_Product" FromRole="User_Product" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_User_Product_BuyerUserInfo">
+          <End Type="ShopModel.BuyerUserInfo" Role="BuyerUserInfo" Multiplicity="1" />
+          <End Type="ShopModel.User_Product" Role="User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Product">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReceiveOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pid" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Shape" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="BuyerUserID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OrderCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Platform_order_status" Type="Int32" />
+          <Property Name="PlatformMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuyerUserInfo" Relationship="ShopModel.FK_Task_BuyerUserInfo" FromRole="Tasks" ToRole="BuyerUserInfo" />
+          <NavigationProperty Name="Product" Relationship="ShopModel.FK_Task_Product" FromRole="Tasks" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Task_BuyerUserInfo">
+          <End Type="ShopModel.BuyerUserInfo" Role="BuyerUserInfo" Multiplicity="1" />
+          <End Type="ShopModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyerUserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="BuyerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nation" Type="Int32" />
+          <Property Name="Url_Asin" Type="Int32" />
+          <Property Name="Url_Asin_Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDescribe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductImg" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PriceBefore" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="SalesVolume" Type="Int32" />
+          <Property Name="ProductNumber" Type="Int32" />
+          <Property Name="Commission" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OrderType" Type="Int32" />
+          <Property Name="cmtType" Type="Int32" />
+          <Property Name="cmtDay" Type="Int32" />
+          <Property Name="Expired" Type="Int32" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperatingMoneyID" Type="Int32" />
+          <Property Name="Coupon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="GoodComment" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Collections" Type="Int32" />
+          <Property Name="CmtNum" Type="Int32" />
+          <Property Name="ProductClassID" Type="Int32" />
+          <Property Name="Shape" Type="Int32" />
+          <Property Name="BusinessID" Type="Int32" />
+          <NavigationProperty Name="Business_Product" Relationship="ShopModel.FK_Business_Product_Product" FromRole="Product" ToRole="Business_Product" />
+          <NavigationProperty Name="BuyerUser_Product" Relationship="ShopModel.FK_BuyerUser_Product_Product" FromRole="Product" ToRole="BuyerUser_Product" />
+          <NavigationProperty Name="ClassiFication" Relationship="ShopModel.FK_Product_ClassiFication" FromRole="Product" ToRole="ClassiFication" />
+          <NavigationProperty Name="ProductComment" Relationship="ShopModel.FK_ProductComment_Product" FromRole="Product" ToRole="ProductComment" />
+          <NavigationProperty Name="Tasks" Relationship="ShopModel.FK_Task_Product" FromRole="Product" ToRole="Tasks" />
+          <NavigationProperty Name="User_Product" Relationship="ShopModel.FK_User_Product_Product" FromRole="Product" ToRole="User_Product" />
+        </EntityType>
+        <Association Name="FK_Business_Product_Product">
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ShopModel.Business_Product" Role="Business_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Business_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuyerUser_Product_Product">
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ShopModel.BuyerUser_Product" Role="BuyerUser_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyerUser_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ClassiFication">
+          <End Type="ShopModel.ClassiFication" Role="ClassiFication" Multiplicity="0..1" />
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassiFication">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductComment_Product">
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ShopModel.ProductComment" Role="ProductComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductComment">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Product">
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ShopModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Product_Product">
+          <End Type="ShopModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ShopModel.User_Product" Role="User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Product">
+              <PropertyRef Name="ProuctID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BuyerOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Images" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="order_steps" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Platform_order_status" Type="Int32" />
+          <Property Name="PlatformMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Business_order_status" Type="Int32" />
+          <Property Name="BusinessMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TasksID" Type="Int32" />
+          <Property Name="OrderCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OrderType" Type="Int32" />
+          <Property Name="Commission" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MoneyManager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="MoneyType" Type="Int32" />
+          <Property Name="Mode" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopModelStoreContainer" CdmEntityContainer="ShopEntities">
+          <EntitySetMapping Name="OrderPower">
+            <EntityTypeMapping TypeName="ShopModel.OrderPower">
+              <MappingFragment StoreEntitySet="OrderPower">
+                <ScalarProperty Name="OrdersNotReceivedNumber" ColumnName="OrdersNotReceivedNumber" />
+                <ScalarProperty Name="OrdersReceiveNumber" ColumnName="OrdersReceiveNumber" />
+                <ScalarProperty Name="CanReceiveOrderSum" ColumnName="CanReceiveOrderSum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataDictionary">
+            <EntityTypeMapping TypeName="ShopModel.DataDictionary">
+              <MappingFragment StoreEntitySet="DataDictionary">
+                <ScalarProperty Name="str4" ColumnName="str4" />
+                <ScalarProperty Name="int3" ColumnName="int3" />
+                <ScalarProperty Name="int2" ColumnName="int2" />
+                <ScalarProperty Name="int1" ColumnName="int1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Custom" ColumnName="Custom" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="FDictionaryID" ColumnName="FDictionaryID" />
+                <ScalarProperty Name="DictionaryID" ColumnName="DictionaryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FDataDictionary">
+            <EntityTypeMapping TypeName="ShopModel.FDataDictionary">
+              <MappingFragment StoreEntitySet="FDataDictionary">
+                <ScalarProperty Name="Argument" ColumnName="Argument" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FDictionaryID" ColumnName="FDictionaryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoneyType">
+            <EntityTypeMapping TypeName="ShopModel.MoneyType">
+              <MappingFragment StoreEntitySet="MoneyType">
+                <ScalarProperty Name="MoneyTypeName" ColumnName="MoneyTypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShopModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassiFication">
+            <EntityTypeMapping TypeName="ShopModel.ClassiFication">
+              <MappingFragment StoreEntitySet="ClassiFication">
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RecordTime" ColumnName="RecordTime" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationMoney">
+            <EntityTypeMapping TypeName="ShopModel.OperationMoney">
+              <MappingFragment StoreEntitySet="OperationMoney">
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyerUser_Product">
+            <EntityTypeMapping TypeName="ShopModel.BuyerUser_Product">
+              <MappingFragment StoreEntitySet="BuyerUser_Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BuyerUserInfoID" ColumnName="BuyerUserInfoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Product">
+            <EntityTypeMapping TypeName="ShopModel.Business_Product">
+              <MappingFragment StoreEntitySet="Business_Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BusinessUserInfoID" ColumnName="BusinessUserInfoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessUserInfo">
+            <EntityTypeMapping TypeName="ShopModel.BusinessUserInfo">
+              <MappingFragment StoreEntitySet="BusinessUserInfo">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="CollectionNum" ColumnName="CollectionNum" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="WeChatNumber" ColumnName="WeChatNumber" />
+                <ScalarProperty Name="Head" ColumnName="Head" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EnterpriseTaxNumber" ColumnName="EnterpriseTaxNumber" />
+                <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductComment">
+            <EntityTypeMapping TypeName="ShopModel.ProductComment">
+              <MappingFragment StoreEntitySet="ProductComment">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyerUserInfo">
+            <EntityTypeMapping TypeName="ShopModel.BuyerUserInfo">
+              <MappingFragment StoreEntitySet="BuyerUserInfo">
+                <ScalarProperty Name="CollectionNum" ColumnName="CollectionNum" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="EnterpriseTaxNumber" ColumnName="EnterpriseTaxNumber" />
+                <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="Get" ColumnName="Get" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="WechatNumber" ColumnName="WechatNumber" />
+                <ScalarProperty Name="Head" ColumnName="Head" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Product">
+            <EntityTypeMapping TypeName="ShopModel.User_Product">
+              <MappingFragment StoreEntitySet="User_Product">
+                <ScalarProperty Name="IsReceiveOrder" ColumnName="IsReceiveOrder" />
+                <ScalarProperty Name="isGood" ColumnName="isGood" />
+                <ScalarProperty Name="isCollected" ColumnName="isCollected" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProuctID" ColumnName="ProuctID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiveOrder">
+            <EntityTypeMapping TypeName="ShopModel.ReceiveOrder">
+              <MappingFragment StoreEntitySet="ReceiveOrder">
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="ShopModel.Tasks">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="PlatformMessage" ColumnName="PlatformMessage" />
+                <ScalarProperty Name="Platform_order_status" ColumnName="Platform_order_status" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BuyerUserID" ColumnName="BuyerUserID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ShopModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="ProductClassID" ColumnName="ProductClassID" />
+                <ScalarProperty Name="CmtNum" ColumnName="CmtNum" />
+                <ScalarProperty Name="Collections" ColumnName="Collections" />
+                <ScalarProperty Name="GoodComment" ColumnName="GoodComment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="Coupon" ColumnName="Coupon" />
+                <ScalarProperty Name="OperatingMoneyID" ColumnName="OperatingMoneyID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="cmtDay" ColumnName="cmtDay" />
+                <ScalarProperty Name="cmtType" ColumnName="cmtType" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="Commission" ColumnName="Commission" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="SalesVolume" ColumnName="SalesVolume" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PriceBefore" ColumnName="PriceBefore" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="ProductDescribe" ColumnName="ProductDescribe" />
+                <ScalarProperty Name="Url_Asin_Value" ColumnName="Url_Asin_Value" />
+                <ScalarProperty Name="Url_Asin" ColumnName="Url_Asin" />
+                <ScalarProperty Name="Nation" ColumnName="Nation" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyerOrder">
+            <EntityTypeMapping TypeName="ShopModel.BuyerOrder">
+              <MappingFragment StoreEntitySet="BuyerOrder">
+                <ScalarProperty Name="Commission" ColumnName="Commission" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="TasksID" ColumnName="TasksID" />
+                <ScalarProperty Name="BusinessMessage" ColumnName="BusinessMessage" />
+                <ScalarProperty Name="Business_order_status" ColumnName="Business_order_status" />
+                <ScalarProperty Name="PlatformMessage" ColumnName="PlatformMessage" />
+                <ScalarProperty Name="Platform_order_status" ColumnName="Platform_order_status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="order_steps" ColumnName="order_steps" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoneyManager">
+            <EntityTypeMapping TypeName="ShopModel.MoneyManager">
+              <MappingFragment StoreEntitySet="MoneyManager">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="MoneyType" ColumnName="MoneyType" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
