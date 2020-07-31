@@ -44,6 +44,7 @@ namespace OrderPlatForm.Controllers
         /// <returns></returns>
         public JsonResult BuyerUserLogin()
         {
+            string msgcode = string.Empty;
             using (StreamReader sr = new StreamReader(Request.InputStream))
             {
                 string json = sr.ReadToEnd();
@@ -53,9 +54,27 @@ namespace OrderPlatForm.Controllers
                     return Json(resultdata);
                 }
                 obj = JObject.Parse(json);
-            }
+            }           
             string UserName = obj["username"].ToString();
             string PassWord = obj["password"].ToString();
+            string PhoneNumber = obj["phonenumber"].ToString();
+            string code = obj["code"].ToString();
+            msgcode = rh.GetString(PhoneNumber);
+            if (string.IsNullOrEmpty(msgcode))
+            {
+                resultdata.res = 500;
+                resultdata.msg = "该验证已失效，请重新输入";
+                return Json(resultdata);
+            }
+            else
+            {
+                if (!msgcode.Equals(code))
+                {
+                    resultdata.res = 500;
+                    resultdata.msg = "该验证有误，请重新输入";
+                    return Json(resultdata);
+                }
+            }
             Regex r1 = new Regex(@"^[1]+[3,5,6,7,8,9]+\d{9}$");
             Regex r2 = new Regex(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
             BuyerUserInfo bui = null;
@@ -124,6 +143,7 @@ namespace OrderPlatForm.Controllers
         /// <returns></returns>
         public JsonResult BuyerRegister()
         {
+            string msgcode = string.Empty;
             using (StreamReader sr = new StreamReader(Request.InputStream))
             {
                 string json = sr.ReadToEnd();
@@ -134,6 +154,8 @@ namespace OrderPlatForm.Controllers
                 }
                 obj = JObject.Parse(json);
             }
+            ///账户类型
+            int Usertype = int.Parse(obj["user_type"].ToString());
             string UserName = obj["username"].ToString();
             string PhoneNumber = obj["phonenumber"].ToString();
             string Email = obj["email"].ToString();
@@ -142,6 +164,23 @@ namespace OrderPlatForm.Controllers
             string EnterpriseName = obj["enterprisename"].ToString();
             string head = obj["head"].ToString();
             string EnterpriseTaxNumber = obj["enterprisetaxnumber"].ToString();
+            string code = obj["code"].ToString();
+            msgcode = rh.GetString(PhoneNumber);
+            if (string.IsNullOrEmpty(msgcode))
+            {
+                resultdata.res = 500;
+                resultdata.msg = "该验证码已失效，请重新输入";
+                return Json(resultdata);
+            }
+            else
+            {
+                if (!msgcode.Equals(code))
+                {
+                    resultdata.res = 500;
+                    resultdata.msg = "该验证码有误，请重新输入";
+                    return Json(resultdata);
+                }
+            }
             if (IBUIC.QueryUserNameUser(UserName) != null)
             {
                 resultdata.msg = "用户名已存在";
@@ -157,7 +196,7 @@ namespace OrderPlatForm.Controllers
                 resultdata.msg = "邮箱已存在 ";
                 return Json(resultdata);
             }
-            if (string.IsNullOrEmpty(EnterpriseName) && string.IsNullOrEmpty(EnterpriseTaxNumber))
+            if (Usertype == 2)
             {
                 BuyerUserInfo bui = new BuyerUserInfo();
                 bui.UserName = UserName;
@@ -181,7 +220,7 @@ namespace OrderPlatForm.Controllers
                     return Json(resultdata);
                 }
             }
-            else
+            else if (Usertype == 3)
             {
                 BuyerUserInfo bui = new BuyerUserInfo();
                 bui.UserName = UserName;
@@ -207,6 +246,11 @@ namespace OrderPlatForm.Controllers
                     return Json(resultdata);
                 }
             }
+            else
+            {
+                resultdata.msg = "注册失败";
+                return Json(resultdata);
+            }
         }
         /// <summary>
         /// 商家登录
@@ -214,7 +258,6 @@ namespace OrderPlatForm.Controllers
         /// <returns></returns>
         public JsonResult BusinessUserLogin()
         {
-
             using (StreamReader sr = new StreamReader(Request.InputStream))
             {
                 string json = sr.ReadToEnd();
@@ -291,13 +334,13 @@ namespace OrderPlatForm.Controllers
             }
             #endregion
         }
-        /// <summary>
+        /// <summary>x
         /// 商家注册
         /// </summary>
         /// <returns></returns>
         public JsonResult BusinessRegister()
         {
-
+            string msgcode = string.Empty;
             using (StreamReader sr = new StreamReader(Request.InputStream))
             {
                 string json = sr.ReadToEnd();
@@ -316,88 +359,72 @@ namespace OrderPlatForm.Controllers
             string EnterpriseName = obj["enterprisename"].ToString();
             string head = obj["head"].ToString();
             string EnterpriseTaxNumber = obj["enterprisetaxnumber"].ToString();
-            if (string.IsNullOrEmpty(EnterpriseName) && string.IsNullOrEmpty(EnterpriseTaxNumber))
+            string code = obj["code"].ToString();
+            msgcode = rh.GetString(PhoneNumber);
+            if (string.IsNullOrEmpty(msgcode))
             {
-                if (IBUC.QueryUserNameUser(UserName) != null)
-                {
-                    resultdata.msg = "用户名已存在 ";
-                    return Json(resultdata);
-                }
-                if (IBUC.QueryPhoneUser(PhoneNumber) != null)
-                {
-                    resultdata.msg = "电话号码已存在 ";
-                    return Json(resultdata);
-                }
-                if (IBUC.QueryEmailUser(Email) != null)
-                {
-                    resultdata.msg = "邮箱已存在 ";
-                    return Json(resultdata);
-                }
-                BusinessUserInfo bui = new BusinessUserInfo();
-                bui.UserName = UserName;
-                bui.PhoneNumber = PhoneNumber;
-                bui.Email = Email;
-                bui.Head = head;
-                bui.WeChatNumber = WechatNumber;
-                bui.PassWord = PassWord;
-                bui.EnterpriseName = EnterpriseName;
-                bui.EnterpriseTaxNumber = EnterpriseTaxNumber;
-                bui.Money = 0;
-                bui.Shape = 0;//此属性表示审核状态    
-                bui.Level = Convert.ToInt32(PowerEnum.Four);//接单权限   
-                if (IBUC.BusinessInfoRegister(bui))
-                {
-                    resultdata.res = 200;
-                    resultdata.msg = "注册成功";
-                    return Json(resultdata);
-                }
-                else
-                {
-                    resultdata.msg = "注册失败";
-                    return Json(resultdata);
-                }
+                resultdata.res = 500;
+                resultdata.msg = "该验证码已失效，请重新输入";
+                return Json(resultdata);
             }
             else
             {
-                if (IBUC.QueryUserNameUser(UserName) != null)
+                if (!msgcode.Equals(code))
                 {
-                    resultdata.msg = "该账户已存在 ";
-                    return Json(resultdata);
-                }
-                if (IBUC.QueryPhoneUser(PhoneNumber) != null)
-                {
-                    resultdata.msg = "该账户已存在 ";
-                    return Json(resultdata);
-                }
-                if (IBUC.QueryEmailUser(Email) != null)
-                {
-                    resultdata.msg = "该账户已存在 ";
-                    return Json(resultdata);
-                }
-                BusinessUserInfo bui = new BusinessUserInfo();
-                bui.UserName = UserName;
-                bui.PhoneNumber = PhoneNumber;
-                bui.Email = Email;
-                bui.Head = head;
-                bui.WeChatNumber = WechatNumber;
-                bui.PassWord = PassWord;
-                bui.Money = 0;
-                bui.Shape = 0;//此属性表示审核状态    
-                bui.Level = Convert.ToInt32(PowerEnum.One);//接单权限   
-                if (IBUC.BusinessInfoRegister(bui))
-                {
-                    resultdata.res = 200;
-                    resultdata.msg = "注册成功";
-                    return Json(resultdata);
-                }
-                else
-                {
-                    resultdata.msg = "注册失败";
+                    resultdata.res = 500;
+                    resultdata.msg = "该验证码有误，请重新输入";
                     return Json(resultdata);
                 }
             }
-
+            if (IBUC.QueryUserNameUser(UserName) != null)
+            {
+                resultdata.msg = "用户名已存在 ";
+                return Json(resultdata);
+            }
+            if (IBUC.QueryPhoneUser(PhoneNumber) != null)
+            {
+                resultdata.msg = "电话号码已存在 ";
+                return Json(resultdata);
+            }
+            if (IBUC.QueryEmailUser(Email) != null)
+            {
+                resultdata.msg = "邮箱已存在 ";
+                return Json(resultdata);
+            }
+            BusinessUserInfo bui = new BusinessUserInfo();
+            bui.UserName = UserName;
+            bui.PhoneNumber = PhoneNumber;
+            bui.Email = Email;
+            bui.Head = head;
+            bui.WeChatNumber = WechatNumber;
+            bui.PassWord = PassWord;
+            bui.EnterpriseName = EnterpriseName;
+            bui.EnterpriseTaxNumber = EnterpriseTaxNumber;
+            bui.Money = 0;
+            bui.Shape = 0;//此属性表示审核状态    
+            bui.Level = Convert.ToInt32(PowerEnum.Four);//接单权限   
+            if (IBUC.BusinessInfoRegister(bui))
+            {
+                resultdata.res = 200;
+                resultdata.msg = "注册成功";
+                return Json(resultdata);
+            }
+            else
+            {
+                resultdata.msg = "注册失败";
+                return Json(resultdata);
+            }
         }
-
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        public void SendMessage()
+        {
+            if (string.IsNullOrWhiteSpace(""))
+            {
+                string resdata = "发送验证码失败";
+                
+            }
+        }
     }
 }

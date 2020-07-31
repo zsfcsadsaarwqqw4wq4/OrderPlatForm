@@ -58,7 +58,6 @@ namespace Common
         /// <returns></returns>
         public static string GetEnumDescription(Enum enumValue)
         {
-
             string value = enumValue.ToString();
             FieldInfo field = enumValue.GetType().GetField(value);
             object[] objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);  //获取描述属性
