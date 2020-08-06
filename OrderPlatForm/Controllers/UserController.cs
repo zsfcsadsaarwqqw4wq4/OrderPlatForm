@@ -57,24 +57,6 @@ namespace OrderPlatForm.Controllers
             }           
             string UserName = obj["username"].ToString();
             string PassWord = obj["password"].ToString();
-            string PhoneNumber = obj["phonenumber"].ToString();
-            string code = obj["code"].ToString();
-            msgcode = rh.GetString(PhoneNumber);
-            if (string.IsNullOrEmpty(msgcode))
-            {
-                resultdata.res = 500;
-                resultdata.msg = "该验证已失效，请重新输入";
-                return Json(resultdata);
-            }
-            else
-            {
-                if (!msgcode.Equals(code))
-                {
-                    resultdata.res = 500;
-                    resultdata.msg = "该验证有误，请重新输入";
-                    return Json(resultdata);
-                }
-            }
             Regex r1 = new Regex(@"^[1]+[3,5,6,7,8,9]+\d{9}$");
             Regex r2 = new Regex(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
             BuyerUserInfo bui = null;
@@ -413,17 +395,6 @@ namespace OrderPlatForm.Controllers
             {
                 resultdata.msg = "注册失败";
                 return Json(resultdata);
-            }
-        }
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        public void SendMessage()
-        {
-            if (string.IsNullOrWhiteSpace(""))
-            {
-                string resdata = "发送验证码失败";
-                
             }
         }
     }

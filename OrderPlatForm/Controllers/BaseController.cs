@@ -65,7 +65,6 @@ namespace OrderPlatForm.Controllers
                 //验证身份信息是否正确
                 if (us == null || authInfo.UserName != us.UserName)
                 {
-
                     throw new TokenException("身份验证过期,请重新登录");
                 };
                 DateTime time = DateTime.Now;

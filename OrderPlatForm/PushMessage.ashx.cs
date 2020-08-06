@@ -11,7 +11,7 @@ using OrderPlatForm.App_Start;
 namespace OrderPlatForm
 {
     /// <summary>
-    /// PushMessage 的摘要说明
+    /// 短信推送类
     /// </summary>
     public class PushMessage : IHttpHandler
     {
@@ -75,7 +75,7 @@ namespace OrderPlatForm
             request.AddQueryParameters("TemplateParam", "{code:\""+code+"\"}");//模板内容            
             try
             {
-                CommonResponse response = client.GetCommonResponse(request);
+                CommonResponse response = client.GetCommonResponse(request);               
                 Console.WriteLine(System.Text.Encoding.Default.GetString(response.HttpResponse.Content));
                 DateTime starttime = DateTime.Now;
                 DateTime endtime = DateTime.Now.AddMinutes(5);

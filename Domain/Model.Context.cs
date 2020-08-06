@@ -40,8 +40,8 @@ namespace Domain
         public virtual DbSet<User_Product> User_Product { get; set; }
         public virtual DbSet<ReceiveOrder> ReceiveOrder { get; set; }
         public virtual DbSet<Tasks> Tasks { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<BuyerOrder> BuyerOrder { get; set; }
         public virtual DbSet<MoneyManager> MoneyManager { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }

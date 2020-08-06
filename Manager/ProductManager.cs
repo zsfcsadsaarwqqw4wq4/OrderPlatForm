@@ -360,6 +360,7 @@ namespace Manager
                                      name = d.UserName,
                                      head = d.Head
                                  },
+                                 label=a.Label,
                                  relations = (from p in db.Product
                                              join f in db.ClassiFication on p.ProductClassID equals f.ID
                                              where f.PID == b.PID && f.ID!=a.ProductClassID

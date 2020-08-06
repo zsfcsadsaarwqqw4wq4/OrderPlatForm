@@ -73,6 +73,7 @@ namespace OrderPlatForm.Controllers
                         }
                     }
                 }
+                //当前账户为团队买家
                 if (us.Level == 3)
                 {
                     var data = IROC.AddOrder(pid, num, us);

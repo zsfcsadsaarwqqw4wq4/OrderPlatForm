@@ -55,6 +55,7 @@ namespace Domain
         public Nullable<int> ProductClassID { get; set; }
         public Nullable<int> Shape { get; set; }
         public Nullable<int> BusinessID { get; set; }
+        public Nullable<decimal> TotalCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Business_Product> Business_Product { get; set; }

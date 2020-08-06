@@ -28,6 +28,7 @@ namespace Manager
             {
                 try
                 {
+                    //根据任务唯一编号查询任务
                     var res=db.Tasks.SingleOrDefault(o=>o.OrderCode.Equals(taskcode));
                     if (res!=null)
                     {
@@ -40,6 +41,7 @@ namespace Manager
                             b.Message = msg;
                             b.order_steps = stepid;
                             b.Time = DateTime.Now;
+                            //佣金
                             b.Commission = value.Commission;
                             b.PlatformMessage = null;
                             b.Platform_order_status = null;
@@ -65,6 +67,7 @@ namespace Manager
                         }
                         return db.SaveChanges() > 0;
                     }
+                    //如果任务没有返回false
                     else
                     {
                         return false;
@@ -94,21 +97,6 @@ namespace Manager
                     if (res != null)
                     {
                         var value=db.Product.SingleOrDefault(o => o.ID == res.ProductID);
-                        //if (stepid == 0)
-                        //{
-                        //    if (value.cmtType==2)
-                        //    {
-                        //        money = Convert.ToDecimal(value.Commission) * Convert.ToDecimal(0.8);
-                        //    }
-                        //    else
-                        //    {
-                        //        money = Convert.ToDecimal(value.Commission);
-                        //    }
-                        //}
-                        //if (stepid == 2)
-                        //{
-                        //    money = Convert.ToDecimal(value.Commission) * Convert.ToDecimal(0.2);
-                        //};
                         var b = db.BuyerOrder.SingleOrDefault(o => o.OrderCode.Equals(ordercode));
                         if (b != null)
                         {                            
@@ -125,36 +113,25 @@ namespace Manager
                         }
                         else
                         {
+                            BuyerOrder bo = new BuyerOrder();
+                            bo.OrderCode = ordercode;
+                            bo.Images = imgs;
+                            bo.Message = msg;
+                            bo.order_steps = stepid;
+                            bo.UserID = user.ID;
+                            bo.TasksID = res.ID;
+                            bo.Time = DateTime.Now;
+                            bo.OrderType = value.OrderType;
+                            bo.Commission = value.Commission;
                             if (value.OrderType==0)
                             {
-                                BuyerOrder bo = new BuyerOrder();
-                                bo.OrderCode = ordercode;
-                                bo.Images = imgs;
-                                bo.Message = msg;
-                                bo.order_steps = stepid;
-                                bo.Status = 3;
-                                bo.UserID = user.ID;
-                                bo.TasksID = res.ID;
-                                bo.Time = DateTime.Now;
-                                bo.OrderType = value.OrderType;
-                                bo.Commission = value.Commission;
-                                db.BuyerOrder.Add(bo);
+                                bo.Status = 3;    
                             }
                             if (value.OrderType == 1)
                             {
-                                BuyerOrder bo = new BuyerOrder();
-                                bo.OrderCode = ordercode;
-                                bo.Images = imgs;
-                                bo.Message = msg;
-                                bo.order_steps = stepid;
                                 bo.Status = 0;
-                                bo.UserID = user.ID;
-                                bo.TasksID = res.ID;
-                                bo.Time = DateTime.Now;
-                                bo.OrderType = value.OrderType;
-                                bo.Commission = value.Commission;
-                                db.BuyerOrder.Add(bo);
                             }
+                            db.BuyerOrder.Add(bo);
                         }
                         return db.SaveChanges() > 0;
                     }
@@ -489,7 +466,7 @@ namespace Manager
                                  && ((taskStatus != -1) ? a.Status == taskStatus : true)
                                  && ((!string.IsNullOrEmpty(keyword)) ? b.Title.Contains(keyword) : true)
                                  && ((!string.IsNullOrEmpty(code)) ? a.OrderCode.Equals(code) : true)
-                                 && ((type != -1) ? b.OrderType == type : true)
+                                 && ((type != -1) ? b.OrderType == type : true)                                 
                                  && a.BuyerUserID == userid
                                  orderby a.Time descending
                                  let c = db.BuyerOrder.Where(o => o.TasksID == a.ID).ToList()
@@ -549,7 +526,6 @@ namespace Manager
                                      discount = b.Discount,
                                      coupon = b.Coupon,
                                      time = a.Time,
-
                                      user = (from u in db.BuyerUserInfo
                                              where u.ID == a.BuyerUserID
                                              select new
@@ -638,7 +614,7 @@ namespace Manager
                                  ordercode = a.OrderCode,
                                  time = a.Time,
                                  ordertype=a.OrderType,
-                                 cmtType = x.cmtType,
+                                 cmtType = x.cmtType,                                 
                                  cmtDay = x.cmtDay,
                                  user = (from c in db.BuyerUserInfo
                                          where c.ID == a.UserID

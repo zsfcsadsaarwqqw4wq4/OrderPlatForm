@@ -26,15 +26,15 @@
         <EntityTypeShape EntityType="ShopModel.ReceiveOrder" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ShopModel.Tasks" Width="1.5" PointX="12" PointY="3.125" IsExpanded="false" />
         <AssociationConnector Association="ShopModel.FK_Task_BuyerUserInfo" />
-        <EntityTypeShape EntityType="ShopModel.Product" Width="1.5" PointX="9.75" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="ShopModel.BuyerOrder" Width="1.5" PointX="5.375" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ShopModel.MoneyManager" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ShopModel.Product" Width="1.5" PointX="9.875" PointY="2.25" IsExpanded="false" />
         <AssociationConnector Association="ShopModel.FK_Business_Product_Product" />
         <AssociationConnector Association="ShopModel.FK_BuyerUser_Product_Product" />
         <AssociationConnector Association="ShopModel.FK_Product_ClassiFication" />
         <AssociationConnector Association="ShopModel.FK_ProductComment_Product" />
         <AssociationConnector Association="ShopModel.FK_Task_Product" />
         <AssociationConnector Association="ShopModel.FK_User_Product_Product" />
-        <EntityTypeShape EntityType="ShopModel.BuyerOrder" Width="1.5" PointX="5.375" PointY="9.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="ShopModel.MoneyManager" Width="1.5" PointX="8.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

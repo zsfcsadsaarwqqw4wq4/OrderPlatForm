@@ -195,12 +195,19 @@ namespace OrderPlatForm.Controllers
         public JsonResult AddRangeProduct()
         {
             RequestUser();
+            string Url_Asin_Value = string.Empty;
+            int Url_Asin_Type = 0;
             Product bp = new Product();
             try
             {
-                int Url_Asin_Type = int.Parse(Request["Url_Asin_Type"]);
-                string Url_Asin_Value = JsonConvert.DeserializeObject<string>(Request["Url_Asin_Value"]);
-
+                if (!string.IsNullOrEmpty(Request["Url_Asin_Type"]))
+                {
+                    Url_Asin_Type = int.Parse(Request["Url_Asin_Type"]);
+                }
+                if (!string.IsNullOrEmpty(Request["Url_Asin_Value"]))
+                {
+                    Url_Asin_Value = JsonConvert.DeserializeObject<string>(Request["Url_Asin_Value"]);
+                }
                 int g_country_value = int.Parse(Request["g_country_value"]);
 
                 int ProductClassID = int.Parse(Request["ProductClassID"]);
@@ -225,8 +232,11 @@ namespace OrderPlatForm.Controllers
                 string Expired = JsonConvert.DeserializeObject<string>(Request["expired"]);
                 string Remark = JsonConvert.DeserializeObject<string>(Request["remark"]);
                 string EndTime = JsonConvert.DeserializeObject<string>(Request["endtime"]);
-                bp.Url_Asin = Url_Asin_Type;
-                bp.Url_Asin_Value = Url_Asin_Value;
+                if (!string.IsNullOrEmpty(Url_Asin_Value))
+                {
+                    bp.Url_Asin = Url_Asin_Type;
+                    bp.Url_Asin_Value = Url_Asin_Value;
+                }
                 bp.Nation = g_country_value;
                 bp.Title = Title;
                 bp.OrderType = result1.Value;
@@ -234,7 +244,7 @@ namespace OrderPlatForm.Controllers
                 bp.SalesVolume = 0;
                 bp.ProductClassID = ProductClassID;
                 bp.EndTime = DateTime.Parse(EndTime);
-                bp.AddTime = DateTime.Now;
+                bp.AddTime = DateTime.Now;                
                 if (!string.IsNullOrWhiteSpace(Label))
                 {
                     bp.Label = Label;

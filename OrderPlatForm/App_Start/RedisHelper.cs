@@ -81,7 +81,7 @@ namespace OrderPlatForm.App_Start
                 bool res = redisclient.Set<T>(key, value);
                 return res;
             }
-        }
+        }        
         /// <summary>
         /// 获取一个object对象，该对象是通过反序列化得到
         /// </summary>
@@ -127,6 +127,42 @@ namespace OrderPlatForm.App_Start
             }
         }
         /// <summary>
+        /// 存储string类型数据有过期时间
+        /// </summary>
+        public bool SetString(string key, string value, DateTime time)
+        {
+            //创建Redis连接对象
+            using (RedisClient redisclient = new RedisClient(RedisPath, RedisPort, "123456"))
+            {
+                //存放string类型数据到内存中
+                bool res = redisclient.Set<string>(key, value, time);
+                return res;
+            }
+        }
+        /// <summary>
+        /// 设置多个key/value
+        /// </summary>
+        /// <param name="dic"></param>
+        public void Set(Dictionary<string, string> dic)
+        {
+            using (RedisClient redisclient = new RedisClient(RedisPath, RedisPort, "123456"))
+            {
+                redisclient.SetAll(dic);
+            }
+        }
+        #region 追加
+        /// <summary>
+        /// 在原有key的value值之后追加value
+        /// </summary>
+        public long Append(string key, string value)
+        {
+            using (RedisClient redisclient = new RedisClient(RedisPath, RedisPort, "123456"))
+            {
+               return redisclient.AppendToValue(key, value);
+            }
+        }
+        #endregion
+        /// <summary>
         /// 存储string类型数据无过期时间
         /// </summary>
         public bool SetString(string key, string value)
@@ -152,6 +188,7 @@ namespace OrderPlatForm.App_Start
                 return res;
             }
         }
+        #region 获取 
         /// <summary>
         /// 根据key得到value
         /// </summary>
@@ -168,6 +205,17 @@ namespace OrderPlatForm.App_Start
             }
         }
         /// <summary>
+        /// 获取多个key的value值
+        /// </summary>
+        public List<string> Get(List<string> keys)
+        {
+            using (RedisClient redisclient = new RedisClient(RedisPath, RedisPort, "123456"))
+            {
+                return redisclient.GetValues(keys);
+            }
+        }
+        #endregion
+        /// <summary>
         /// 根据key删除string类型的值
         /// </summary>
         /// <param name="key"></param>
@@ -179,6 +227,7 @@ namespace OrderPlatForm.App_Start
                 return res;
             }
         }
+
         #endregion
         #region hash类型是一个string类型的field和value的映射表.hash特别适合存储对象,因为它占用的内存更小。
         /// <summary>
@@ -349,5 +398,6 @@ namespace OrderPlatForm.App_Start
                 list.RemoveAt(index);
             }
         }
+
     }
 }

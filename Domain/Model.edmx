@@ -189,6 +189,7 @@
           <Property Name="ProductClassID" Type="int" />
           <Property Name="Shape" Type="int" />
           <Property Name="BusinessID" Type="int" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="ProductComment">
           <Key>
@@ -502,6 +503,8 @@
             <End Role="BuyerUserInfo" EntitySet="BuyerUserInfo" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
+          <EntitySet Name="BuyerOrder" EntityType="ShopModel.BuyerOrder" />
+          <EntitySet Name="MoneyManager" EntityType="ShopModel.MoneyManager" />
           <EntitySet Name="Product" EntityType="ShopModel.Product" />
           <AssociationSet Name="FK_Business_Product_Product" Association="ShopModel.FK_Business_Product_Product">
             <End Role="Product" EntitySet="Product" />
@@ -527,8 +530,6 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="User_Product" EntitySet="User_Product" />
           </AssociationSet>
-          <EntitySet Name="BuyerOrder" EntityType="ShopModel.BuyerOrder" />
-          <EntitySet Name="MoneyManager" EntityType="ShopModel.MoneyManager" />
           </EntityContainer>
         <EntityType Name="OrderPower">
           <Key>
@@ -791,6 +792,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BuyerOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Images" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="order_steps" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Platform_order_status" Type="Int32" />
+          <Property Name="PlatformMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Business_order_status" Type="Int32" />
+          <Property Name="BusinessMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TasksID" Type="Int32" />
+          <Property Name="OrderCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OrderType" Type="Int32" />
+          <Property Name="Commission" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MoneyManager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="MoneyType" Type="Int32" />
+          <Property Name="Mode" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
@@ -826,6 +861,7 @@
           <Property Name="ProductClassID" Type="Int32" />
           <Property Name="Shape" Type="Int32" />
           <Property Name="BusinessID" Type="Int32" />
+          <Property Name="TotalCost" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Business_Product" Relationship="ShopModel.FK_Business_Product_Product" FromRole="Product" ToRole="Business_Product" />
           <NavigationProperty Name="BuyerUser_Product" Relationship="ShopModel.FK_BuyerUser_Product_Product" FromRole="Product" ToRole="BuyerUser_Product" />
           <NavigationProperty Name="ClassiFication" Relationship="ShopModel.FK_Product_ClassiFication" FromRole="Product" ToRole="ClassiFication" />
@@ -905,40 +941,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BuyerOrder">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Images" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="order_steps" Type="Int32" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Platform_order_status" Type="Int32" />
-          <Property Name="PlatformMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Business_order_status" Type="Int32" />
-          <Property Name="BusinessMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="TasksID" Type="Int32" />
-          <Property Name="OrderCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="OrderType" Type="Int32" />
-          <Property Name="Commission" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="MoneyManager">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="MoneyType" Type="Int32" />
-          <Property Name="Mode" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1131,43 +1133,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="ShopModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
-                <ScalarProperty Name="Shape" ColumnName="Shape" />
-                <ScalarProperty Name="ProductClassID" ColumnName="ProductClassID" />
-                <ScalarProperty Name="CmtNum" ColumnName="CmtNum" />
-                <ScalarProperty Name="Collections" ColumnName="Collections" />
-                <ScalarProperty Name="GoodComment" ColumnName="GoodComment" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-                <ScalarProperty Name="Coupon" ColumnName="Coupon" />
-                <ScalarProperty Name="OperatingMoneyID" ColumnName="OperatingMoneyID" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="Expired" ColumnName="Expired" />
-                <ScalarProperty Name="cmtDay" ColumnName="cmtDay" />
-                <ScalarProperty Name="cmtType" ColumnName="cmtType" />
-                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
-                <ScalarProperty Name="Commission" ColumnName="Commission" />
-                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
-                <ScalarProperty Name="SalesVolume" ColumnName="SalesVolume" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="PriceBefore" ColumnName="PriceBefore" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-                <ScalarProperty Name="ProductDescribe" ColumnName="ProductDescribe" />
-                <ScalarProperty Name="Url_Asin_Value" ColumnName="Url_Asin_Value" />
-                <ScalarProperty Name="Url_Asin" ColumnName="Url_Asin" />
-                <ScalarProperty Name="Nation" ColumnName="Nation" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BuyerOrder">
             <EntityTypeMapping TypeName="ShopModel.BuyerOrder">
               <MappingFragment StoreEntitySet="BuyerOrder">
@@ -1200,6 +1165,44 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ShopModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="Shape" ColumnName="Shape" />
+                <ScalarProperty Name="ProductClassID" ColumnName="ProductClassID" />
+                <ScalarProperty Name="CmtNum" ColumnName="CmtNum" />
+                <ScalarProperty Name="Collections" ColumnName="Collections" />
+                <ScalarProperty Name="GoodComment" ColumnName="GoodComment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="Coupon" ColumnName="Coupon" />
+                <ScalarProperty Name="OperatingMoneyID" ColumnName="OperatingMoneyID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="cmtDay" ColumnName="cmtDay" />
+                <ScalarProperty Name="cmtType" ColumnName="cmtType" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="Commission" ColumnName="Commission" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="SalesVolume" ColumnName="SalesVolume" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PriceBefore" ColumnName="PriceBefore" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="ProductDescribe" ColumnName="ProductDescribe" />
+                <ScalarProperty Name="Url_Asin_Value" ColumnName="Url_Asin_Value" />
+                <ScalarProperty Name="Url_Asin" ColumnName="Url_Asin" />
+                <ScalarProperty Name="Nation" ColumnName="Nation" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
